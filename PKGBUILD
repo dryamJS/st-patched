@@ -20,16 +20,19 @@ conflicts=("${_pkgname}")
 
 # include config.h and any patches you want to have applied here
 source=('http://dl.suckless.org/st/st-0.7.tar.gz'	
-	'config.h'
+  'config.h'
 	'http://st.suckless.org/patches/st-clipboard-20160727-308bfbf.diff'
 	'http://st.suckless.org/patches/st-delkey-20160727-308bfbf.diff'
-	'http://st.suckless.org/patches/st-externalpipe-20160727-308bfbf.diff'
+	#'http://st.suckless.org/patches/st-externalpipe-20160727-308bfbf.diff'
 	'http://st.suckless.org/patches/st-hidecursor-20160727-308bfbf.diff'
 	'http://st.suckless.org/patches/st-no_bold_colors-20160727-308bfbf.diff'
-	'http://st.suckless.org/patches/st-solarized-both-20160727-308bfbf.diff'
+	'http://st.suckless.org/patches/st-solarized-dark-20160727-308bfbf.diff'
 	'http://st.suckless.org/patches/st-spoiler-20160727-308bfbf.diff'
 	'http://st.suckless.org/patches/st-visualbell-20160727-308bfbf.diff'
 	'http://st.suckless.org/patches/st-vertcenter-20160819-023225e.diff'
+	'http://st.suckless.org/patches/st-scrollback-0.7.diff'
+	'http://st.suckless.org/patches/st-scrollback-mouse-20161020-6e79e83.diff'
+	'http://st.suckless.org/patches/st-scrollback-mouse-altscreen-20161020-6e79e83.diff'
 )
 
 
@@ -42,9 +45,7 @@ prepare() {
 			cp "$srcdir/$file" .
 		elif [[ "$file" == *.diff || "$file" == *.patch ]]; then
 			# add all patches present in source array
-			patch -Np1 <"$srcdir/$(basename ${file})"
-
-	
+			patch -Np1 <"$srcdir/$(basename ${file})"	
 		fi
 	done
 }
@@ -61,13 +62,15 @@ package() {
 	install -Dm644 README "${pkgdir}/usr/share/doc/${pkgname}/README"
 }
 md5sums=('29b2a599cf1511c8062ed8f025c84c63'
-         'SKIP'
+         '5b1f5eb0c71dfb6506a3cad0970f13d5'
          '831b8bdc34b48a3290e39ac9aca2906f'
          '3bff87125eaf696f56230fb618d6eb90'
-         '47d628501defd776efd0d4fbb1968895'
          '8ff8a77b34dfc09a4dd0d2cf876d68e7'
          '635b29fb7cb085ba445e909d7499f98e'
-         'b7219cf14d214086c9bb573cc87d1465'
+         '17528c1f860e6885d1b4c4d3f080c5b9'
          '84941105ecbd96cf6db0f67a76696481'
          'e8d28e10e9b2a2d2a86e8de294eaa4c4'
-         'bef82e822d8a02963fb8ede5829e04c6')
+         'bef82e822d8a02963fb8ede5829e04c6'
+         'c55076d94247e121a1a86d32a793cf2e'
+         '8bc037ef8ddaff6b9e25839774bf736a'
+         '15a5d2e05f4939da14976a9459619956')
